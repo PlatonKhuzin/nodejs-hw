@@ -1,0 +1,30 @@
+{
+  "name": "nodejs-hw",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Express notes API — homework 01-express",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.9",
+    "express": "^5.3.0",
+    "pino-http": "^11.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.14.0",
+    "globals": "^17.14.0",
+    "nodemon": "^3.1.14",
+    "prettier": "^3.9.10"
+  }
+}
