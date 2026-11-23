@@ -23,7 +23,14 @@ notesRoutes.get(
   getNoteById,
 );
 notesRoutes.post('/notes', celebrate(createNoteSchema), createNote);
-notesRoutes.patch('/notes/:noteId', celebrate(updateNoteSchema), updateNote);
+notesRoutes.patch(
+  '/notes/:noteId',
+  celebrate({
+    ...updateNoteSchema,
+    [Segments.PARAMS]: noteIdSchema,
+  }),
+  updateNote,
+);
 notesRoutes.delete(
   '/notes/:noteId',
   celebrate({ [Segments.PARAMS]: noteIdSchema }),
