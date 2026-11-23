@@ -16,24 +16,44 @@ import {
 
 const notesRoutes = Router();
 
-notesRoutes.get('/notes', celebrate(getAllNotesSchema), getAllNotes);
+notesRoutes.get(
+  '/notes',
+  celebrate({
+    [Segments.QUERY]: getAllNotesSchema,
+  }),
+  getAllNotes,
+);
+
 notesRoutes.get(
   '/notes/:noteId',
-  celebrate({ [Segments.PARAMS]: noteIdSchema }),
+  celebrate({
+    [Segments.PARAMS]: noteIdSchema,
+  }),
   getNoteById,
 );
-notesRoutes.post('/notes', celebrate(createNoteSchema), createNote);
+
+notesRoutes.post(
+  '/notes',
+  celebrate({
+    [Segments.BODY]: createNoteSchema,
+  }),
+  createNote,
+);
+
 notesRoutes.patch(
   '/notes/:noteId',
   celebrate({
-    ...updateNoteSchema,
-    [Segments.PARAMS]: noteIdSchema,
+    [Segments.PARAMS]: updateNoteSchema[Segments.PARAMS],
+    [Segments.BODY]: updateNoteSchema[Segments.BODY],
   }),
   updateNote,
 );
+
 notesRoutes.delete(
   '/notes/:noteId',
-  celebrate({ [Segments.PARAMS]: noteIdSchema }),
+  celebrate({
+    [Segments.PARAMS]: noteIdSchema,
+  }),
   deleteNote,
 );
 
