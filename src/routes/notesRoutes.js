@@ -42,7 +42,10 @@ notesRoutes.post(
 
 notesRoutes.patch(
   '/notes/:noteId',
-  celebrate(updateNoteSchema),
+  celebrate({
+    [Segments.PARAMS]: noteIdSchema,
+    [Segments.BODY]: updateNoteSchema,
+  }),
   updateNote,
 );
 
